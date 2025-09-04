@@ -364,13 +364,7 @@
         .guideline-content ul { list-style: none; margin-bottom: 20px; padding-left: 0; }
         .guideline-content ul li { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
         .guideline-content ul li i { color: var(--success-color); margin-top: 4px; }
-        .checklist-section, .storage-guide, .cooking-temp-guide { margin-top: 20px; }
-        .checklist-grid, .temp-guide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .temp-requirement { display: flex; justify-content: space-between; padding: 8px; border-bottom: 1px solid var(--border-color); }
-        .temp-requirement:last-child { border: none; }
-        .temp-value { font-weight: 600; color: var(--danger-color); }
-
-
+        
         /* --- Ingredients/Recipes Grid --- */
         .filters-container {
             display: flex;
@@ -504,6 +498,55 @@
         .status-good { background-color: var(--success-color); }
         .status-low { background-color: var(--warning-color); }
         .status-expiring { background-color: var(--danger-color); }
+
+        /* --- Waste Section Specific --- */
+        .waste-summary-list {
+            padding: 0;
+            list-style: none;
+        }
+        .waste-summary-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .waste-summary-item:last-child {
+            border-bottom: none;
+        }
+        .waste-summary-item i {
+            font-size: 20px;
+            width: 40px;
+            text-align: center;
+            margin-right: 15px;
+        }
+        .waste-summary-item .waste-type {
+            font-weight: 500;
+            flex-grow: 1;
+        }
+        .waste-summary-item .waste-amount {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        .guide-card {
+            background: var(--bg-color);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+        .guide-card i {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        .guide-card h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .guide-card p {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
 
 
         /* --- Modals --- */
@@ -869,7 +912,6 @@
             </section>
 
             <section id="guidelines" class="section">
-                <!-- Guidelines content remains the same -->
                  <div class="guidelines-container">
                     <div class="guideline-card">
                         <div class="guideline-header">
@@ -1111,41 +1153,46 @@
             </section>
 
             <section id="waste" class="section">
-                <div class="section-header">
+                 <div class="section-header">
                     <h2>Pengelolaan Limbah</h2>
                     <button class="btn btn-success" onclick="openWasteModal()">
                         <i class="fas fa-plus"></i> Catat Limbah
                     </button>
                 </div>
-
-                 <div class="stats-grid">
-                    <div class="stat-card success">
-                         <div class="stat-icon"><i class="fas fa-leaf"></i></div>
-                        <div class="stat-content">
-                            <h3 id="organicWaste">0 kg</h3>
-                            <p>Limbah Organik</p>
-                        </div>
+                <div class="dashboard-grid" style="grid-template-columns: 1fr;">
+                    <div class="dashboard-card">
+                        <ul class="waste-summary-list" id="wasteSummaryList">
+                           <!-- Populated by JS -->
+                        </ul>
                     </div>
-                     <div class="stat-card warning">
-                        <div class="stat-icon"><i class="fas fa-oil-can"></i></div>
-                        <div class="stat-content">
-                            <h3 id="usedOil">0 liter</h3>
-                            <p>Minyak Bekas</p>
-                        </div>
+                    <div class="dashboard-card">
+                         <h3>Panduan Pengelolaan Limbah</h3>
+                         <div class="dashboard-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                             <div class="guide-card">
+                                 <i class="fas fa-seedling"></i>
+                                 <h4>Kompos Organik</h4>
+                                 <p>Sisa sayuran & buah dapat diolah menjadi kompos.</p>
+                                 <button class="btn btn-sm btn-secondary">Pelajari</button>
+                             </div>
+                              <div class="guide-card">
+                                 <i class="fas fa-soap"></i>
+                                 <h4>Daur Ulang Minyak</h4>
+                                 <p>Minyak bekas dapat diolah menjadi sabun atau biodiesel.</p>
+                                 <button class="btn btn-sm btn-secondary">Pelajari</button>
+                             </div>
+                              <div class="guide-card">
+                                 <i class="fas fa-recycle"></i>
+                                 <h4>Kemasan</h4>
+                                 <p>Pilih kemasan yang dapat didaur ulang atau guna ulang.</p>
+                                 <button class="btn btn-sm btn-secondary">Tips</button>
+                             </div>
+                         </div>
                     </div>
-                    <div class="stat-card primary">
-                        <div class="stat-icon"><i class="fas fa-box"></i></div>
-                        <div class="stat-content">
-                            <h3 id="packagingWaste">0 kg</h3>
-                            <p>Kemasan</p>
+                    <div class="dashboard-card">
+                         <h3>Pelacakan Limbah Mingguan</h3>
+                         <div class="waste-chart-container" style="height: 300px;">
+                            <canvas id="wasteChart"></canvas>
                         </div>
-                    </div>
-                </div>
-
-                <div class="dashboard-card">
-                     <h3>Pelacakan Limbah Mingguan</h3>
-                     <div class="waste-chart-container" style="height: 300px;">
-                        <canvas id="wasteChart"></canvas>
                     </div>
                 </div>
             </section>
@@ -1393,13 +1440,23 @@
             </div>
             <form id="wasteForm" class="modal-form">
                 <div class="form-grid">
-                    <div class="form-group">
+                     <div class="form-group">
                         <label for="wasteType">Jenis Limbah*</label>
                         <select id="wasteType" required>
                             <option value="">Pilih Jenis</option>
+                            <option value="Sisa Makanan">Sisa Makanan</option>
+                            <option value="Bahan Kedaluwarsa">Bahan Kedaluwarsa</option>
+                            <option value="Minyak Jelantah">Minyak Jelantah</option>
+                            <option value="Kemasan">Kemasan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="wasteCategory">Kategori*</label>
+                        <select id="wasteCategory" required>
+                            <option value="">Pilih Kategori</option>
                             <option value="organik">Organik</option>
-                            <option value="minyak">Minyak Bekas</option>
-                            <option value="kemasan">Kemasan</option>
+                            <option value="anorganik">Anorganik</option>
+                            <option value="b3">B3 (Bahan Berbahaya & Beracun)</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -1412,16 +1469,34 @@
                             <option value="">Pilih Satuan</option>
                             <option value="kg">Kilogram</option>
                             <option value="liter">Liter</option>
+                            <option value="pcs">Pieces</option>
+                        </select>
+                    </div>
+                     <div class="form-group full-width">
+                        <label for="wasteSource">Sumber*</label>
+                        <input type="text" id="wasteSource" required placeholder="Contoh: Dapur Utama, Gudang Kering">
+                    </div>
+                     <div class="form-group">
+                        <label for="wasteDisposal">Metode Pembuangan*</label>
+                        <select id="wasteDisposal" required>
+                            <option value="">Pilih Metode</option>
+                            <option value="kompos">Kompos</option>
+                            <option value="daur-ulang">Daur Ulang</option>
+                            <option value="tpa">Tempat Pembuangan Akhir</option>
+                            <option value="pihak-ketiga">Diserahkan ke Pihak Ketiga</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="wasteSource">Sumber*</label>
-                        <input type="text" id="wasteSource" required placeholder="Contoh: Dapur Utama">
+                        <label for="wasteCause">Penyebab*</label>
+                        <select id="wasteCause" required>
+                            <option value="">Pilih Penyebab</option>
+                            <option value="sisa-produksi">Sisa Produksi</option>
+                            <option value="produk-gagal">Produk Gagal</option>
+                            <option value="kedaluwarsa">Kedaluwarsa</option>
+                            <option value="pembersihan">Pembersihan</option>
+                            <option value="lainnya">Lainnya</option>
+                        </select>
                     </div>
-                </div>
-                <div class="form-group full-width">
-                    <label for="wasteNotes">Catatan</label>
-                    <textarea id="wasteNotes" placeholder="Catatan tambahan..."></textarea>
                 </div>
                 <div class="modal-actions">
                     <button type="button" class="btn btn-secondary" onclick="closeModal('wasteModal')">Batal</button>
@@ -1473,16 +1548,15 @@
             instructions: '1. Haluskan bumbu dan campur dengan madu.\n2. Ungkep ayam dengan bumbu.\n3. Bakar ayam hingga matang sambil dioles sisa bumbu.' },
         ];
         
-        // Mock historical data for reports
         const today = new Date();
         const yesterday = new Date(new Date().setDate(today.getDate() - 1));
         const lastWeek = new Date(new Date().setDate(today.getDate() - 7));
         const lastMonth = new Date(new Date().setDate(today.getDate() - 30));
 
         let wasteData = [
-            { id: 1, type: 'organik', amount: 2.5, unit: 'kg', source: 'Dapur Utama', date: yesterday },
-            { id: 2, type: 'minyak', amount: 0.5, unit: 'liter', source: 'Penggorengan', date: lastWeek },
-            { id: 3, type: 'kemasan', amount: 1.2, unit: 'kg', source: 'Penerimaan Barang', date: lastMonth },
+            { id: 1, type: 'Sisa Makanan', category: 'organik', amount: 2.5, unit: 'kg', source: 'Dapur Utama', disposal: 'kompos', cause: 'sisa-produksi', date: yesterday },
+            { id: 2, type: 'Minyak Jelantah', category: 'b3', amount: 0.5, unit: 'liter', source: 'Penggorengan', disposal: 'pihak-ketiga', cause: 'sisa-produksi', date: lastWeek },
+            { id: 3, type: 'Kemasan', category: 'anorganik', amount: 1.2, unit: 'kg', source: 'Penerimaan Barang', disposal: 'daur-ulang', cause: 'sisa-produksi', date: lastMonth },
         ];
         let productionHistory = [
             { id: 1, recipeName: 'Nasi Goreng Spesial', quantity: 10, chef: 'Budi', date: yesterday, status: 'Selesai' },
@@ -1900,7 +1974,7 @@
             }, 3000);
         };
         
-        // --- NEWLY IMPLEMENTED FEATURES ---
+        // --- NEWLY IMPLEMENTED/IMPROVED FEATURES ---
 
         // 1. Quality Control
         window.startQualityCheck = () => {
@@ -1940,26 +2014,45 @@
             const newWaste = {
                 id: Date.now(),
                 type: document.getElementById('wasteType').value,
+                category: document.getElementById('wasteCategory').value,
                 amount: parseFloat(document.getElementById('wasteAmount').value),
                 unit: document.getElementById('wasteUnit').value,
                 source: document.getElementById('wasteSource').value,
+                disposal: document.getElementById('wasteDisposal').value,
+                cause: document.getElementById('wasteCause').value,
                 date: new Date()
             };
             wasteData.push(newWaste);
             showToast('Data limbah berhasil dicatat', 'success');
             addActivity('fas fa-recycle text-info', `Mencatat ${newWaste.amount} ${newWaste.unit} limbah ${newWaste.type}`);
             closeModal('wasteModal');
-            updateWasteSummary();
-            renderWasteChart();
+            renderWastePage();
         });
 
-        const updateWasteSummary = () => {
-             const organic = wasteData.filter(w => w.type === 'organik').reduce((sum, w) => sum + w.amount, 0);
-             const oil = wasteData.filter(w => w.type === 'minyak').reduce((sum, w) => sum + w.amount, 0);
-             const packaging = wasteData.filter(w => w.type === 'kemasan').reduce((sum, w) => sum + w.amount, 0);
-             document.getElementById('organicWaste').textContent = `${organic.toFixed(1)} kg`;
-             document.getElementById('usedOil').textContent = `${oil.toFixed(1)} liter`;
-             document.getElementById('packagingWaste').textContent = `${packaging.toFixed(1)} kg`;
+        const renderWastePage = () => {
+             const summaryList = document.getElementById('wasteSummaryList');
+             const organic = wasteData.filter(w => w.category === 'organik').reduce((sum, w) => sum + w.amount, 0);
+             const oil = wasteData.filter(w => w.type === 'Minyak Jelantah').reduce((sum, w) => sum + w.amount, 0);
+             const packaging = wasteData.filter(w => w.type === 'Kemasan').reduce((sum, w) => sum + w.amount, 0);
+             
+             summaryList.innerHTML = `
+                <li class="waste-summary-item">
+                    <i class="fas fa-leaf text-success"></i>
+                    <span class="waste-type">Limbah Organik</span>
+                    <span class="waste-amount">${organic.toFixed(1)} kg</span>
+                </li>
+                <li class="waste-summary-item">
+                    <i class="fas fa-oil-can text-warning"></i>
+                    <span class="waste-type">Minyak Bekas</span>
+                    <span class="waste-amount">${oil.toFixed(1)} liter</span>
+                </li>
+                <li class="waste-summary-item">
+                    <i class="fas fa-box text-primary"></i>
+                    <span class="waste-type">Kemasan</span>
+                    <span class="waste-amount">${packaging.toFixed(1)} kg</span>
+                </li>
+             `;
+             renderWasteChart();
         };
         
         // 3. Processing
@@ -2080,9 +2173,9 @@
             if (period === 'daily') {
                 startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
             } else if (period === 'weekly') {
-                startDate = new Date(now.setDate(now.getDate() - 7));
+                startDate = new Date(new Date().setDate(now.getDate() - 7));
             } else if (period === 'monthly') {
-                startDate = new Date(now.setMonth(now.getMonth() - 1));
+                 startDate = new Date(new Date().setMonth(now.getMonth() - 1));
             }
 
             const filteredProduction = productionHistory.filter(p => p.date >= startDate);
@@ -2133,6 +2226,27 @@
             table += '</tbody></table>';
             body.innerHTML = table;
         };
+        
+        // Helper functions for waste report
+        const getMostCommonWasteType = (data) => {
+            if (!data || data.length === 0) return 'N/A';
+            const counts = {};
+            data.forEach(item => {
+                counts[item.type] = (counts[item.type] || 0) + 1;
+            });
+            const mostCommon = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b, '');
+            return mostCommon ? `${mostCommon} (${counts[mostCommon]} entri)` : 'N/A';
+        };
+
+        const getMostCommonSource = (data) => {
+            if (!data || data.length === 0) return 'N/A';
+            const counts = {};
+            data.forEach(item => {
+                counts[item.source] = (counts[item.source] || 0) + 1;
+            });
+            const mostCommon = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b, '');
+            return mostCommon ? `${mostCommon} (${counts[mostCommon]} entri)` : 'N/A';
+        };
 
         const generateWasteReport = (data) => {
             const body = document.getElementById('waste-report');
@@ -2141,17 +2255,36 @@
                 return;
             }
             let table = `<table class="report-table">
-                <thead><tr><th>Tanggal</th><th>Jenis</th><th>Jumlah</th><th>Sumber</th></tr></thead><tbody>`;
+                <thead><tr><th>Tanggal</th><th>Jenis</th><th>Kategori</th><th>Jumlah</th><th>Sumber</th><th>Metode Pembuangan</th><th>Penyebab</th></tr></thead><tbody>`;
             data.forEach(item => {
+                const date = new Date(item.date);
+                const categoryText = item.category ? document.querySelector(`#wasteCategory option[value="${item.category}"]`)?.textContent || item.category : '-';
+                const disposalText = item.disposal ? document.querySelector(`#wasteDisposal option[value="${item.disposal}"]`)?.textContent || item.disposal : '-';
+                const causeText = item.cause ? document.querySelector(`#wasteCause option[value="${item.cause}"]`)?.textContent || item.cause : '-';
+                
                 table += `<tr>
-                    <td>${item.date.toLocaleDateString('id-ID')}</td>
+                    <td>${date.toLocaleDateString('id-ID')} ${date.toLocaleTimeString('id-ID', {hour: '2-digit', minute: '2-digit'})}</td>
                     <td>${item.type}</td>
+                    <td>${categoryText}</td>
                     <td>${item.amount} ${item.unit}</td>
                     <td>${item.source}</td>
+                    <td>${disposalText}</td>
+                    <td>${causeText}</td>
                 </tr>`;
             });
             table += '</tbody></table>';
-            body.innerHTML = table;
+            
+            // Add summary statistics
+            const summary = `
+                <div style="margin-bottom: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 8px;">
+                    <h4>Ringkasan Periode</h4>
+                    <p><strong>Total Entri:</strong> ${data.length}</p>
+                    <p><strong>Jenis Paling Banyak:</strong> ${getMostCommonWasteType(data)}</p>
+                    <p><strong>Sumber Paling Aktif:</strong> ${getMostCommonSource(data)}</p>
+                </div>
+            `;
+            
+            body.innerHTML = summary + table;
         };
         
         document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -2169,9 +2302,9 @@
         const renderWasteChart = () => {
             if (!document.getElementById('wasteChart')) return;
             const ctx = document.getElementById('wasteChart').getContext('2d');
-            const organic = wasteData.filter(w => w.type === 'organik').reduce((sum, w) => sum + w.amount, 0);
-            const oil = wasteData.filter(w => w.type === 'minyak').reduce((sum, w) => sum + w.amount, 0);
-            const packaging = wasteData.filter(w => w.type === 'kemasan').reduce((sum, w) => sum + w.amount, 0);
+            const organic = wasteData.filter(w => w.category === 'organik').reduce((sum, w) => sum + w.amount, 0);
+            const oil = wasteData.filter(w => w.type === 'Minyak Jelantah').reduce((sum, w) => sum + w.amount, 0);
+            const packaging = wasteData.filter(w => w.type === 'Kemasan').reduce((sum, w) => sum + w.amount, 0);
 
             if(wasteChartInstance) wasteChartInstance.destroy();
             wasteChartInstance = new Chart(ctx, {
@@ -2195,7 +2328,7 @@
             renderRecipes();
             renderInventory();
             renderProcessingQueue();
-            updateWasteSummary();
+            renderWastePage();
             renderActivities();
         };
 
