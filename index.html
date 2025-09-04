@@ -187,51 +187,11 @@
             font-size: 14px;
             margin: 0;
         }
-
+        
         .header-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
+           display: none; /* Hide the right side of the header */
         }
 
-        .notification-bell {
-            position: relative;
-            font-size: 20px;
-            color: var(--text-light);
-            cursor: pointer;
-        }
-
-        .notification-count {
-            position: absolute;
-            top: -5px;
-            right: -8px;
-            background-color: var(--danger-color);
-            color: #fff;
-            font-size: 10px;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-        }
-
-        .user-profile {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .profile-img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
-
-        .profile-name {
-            font-weight: 600;
-        }
 
         /* --- Section --- */
         .section {
@@ -401,9 +361,9 @@
         .guideline-header i { font-size: 24px; }
         .guideline-header h3 { margin: 0; font-size: 18px; }
         .guideline-content { padding: 20px; }
-        .guideline-content ul { list-style: none; margin-bottom: 20px; }
-        .guideline-content ul li { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
-        .guideline-content ul li i { color: var(--success-color); }
+        .guideline-content ul { list-style: none; margin-bottom: 20px; padding-left: 0; }
+        .guideline-content ul li { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+        .guideline-content ul li i { color: var(--success-color); margin-top: 4px; }
         .checklist-section, .storage-guide, .cooking-temp-guide { margin-top: 20px; }
         .checklist-grid, .temp-guide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .temp-requirement { display: flex; justify-content: space-between; padding: 8px; border-bottom: 1px solid var(--border-color); }
@@ -839,15 +799,8 @@
                     <h1 id="page-title">Dashboard</h1>
                     <p id="page-subtitle">Sistem Manajemen Pengolahan Makanan & Minuman</p>
                 </div>
-                <div class="header-right">
-                    <div class="notification-bell">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-count" id="notificationCount">0</span>
-                    </div>
-                    <div class="user-profile">
-                        <img src="https://via.placeholder.com/40" alt="Profile" class="profile-img">
-                        <span class="profile-name">Admin</span>
-                    </div>
+                 <div class="header-right">
+                    <!-- This section is now hidden via CSS -->
                 </div>
             </header>
 
@@ -895,16 +848,7 @@
                     <div class="dashboard-card">
                         <h3>Aktivitas Terbaru</h3>
                         <div class="activity-list" id="activityList">
-                            <div class="activity-item">
-                                <i class="fas fa-plus-circle text-success"></i>
-                                <span>Menambahkan resep Nasi Goreng Spesial</span>
-                                <small>2 menit lalu</small>
-                            </div>
-                            <div class="activity-item">
-                                <i class="fas fa-edit text-warning"></i>
-                                <span>Memperbarui stok Beras Premium</span>
-                                <small>15 menit lalu</small>
-                            </div>
+                           <!-- Dynamically populated -->
                         </div>
                     </div>
                     
@@ -925,7 +869,8 @@
             </section>
 
             <section id="guidelines" class="section">
-                <div class="guidelines-container">
+                <!-- Guidelines content remains the same -->
+                 <div class="guidelines-container">
                     <div class="guideline-card">
                         <div class="guideline-header">
                             <i class="fas fa-shopping-basket"></i>
@@ -938,30 +883,8 @@
                                 <li><i class="fas fa-check"></i> Gunakan air bersih dan layak minum</li>
                                 <li><i class="fas fa-check"></i> Periksa kualitas visual dan tekstur bahan</li>
                             </ul>
-                            <div class="checklist-section">
-                                <h4>Checklist Pemilihan Bahan</h4>
-                                <div class="checklist-grid">
-                                    <label class="checklist-item">
-                                        <input type="checkbox" class="quality-check" data-category="selection">
-                                        <span>Bahan segar dan tidak layu</span>
-                                    </label>
-                                    <label class="checklist-item">
-                                        <input type="checkbox" class="quality-check" data-category="selection">
-                                        <span>Tanggal kedaluwarsa masih lama</span>
-                                    </label>
-                                    <label class="checklist-item">
-                                        <input type="checkbox" class="quality-check" data-category="selection">
-                                        <span>Kemasan tidak rusak</span>
-                                    </label>
-                                    <label class="checklist-item">
-                                        <input type="checkbox" class="quality-check" data-category="selection">
-                                        <span>Warna dan aroma normal</span>
-                                    </label>
-                                </div>
-                            </div>
                         </div>
                     </div>
-
                     <div class="guideline-card">
                         <div class="guideline-header">
                             <i class="fas fa-box"></i>
@@ -974,66 +897,23 @@
                                 <li><i class="fas fa-check"></i> Gunakan wadah tertutup yang bersih dan aman</li>
                                 <li><i class="fas fa-check"></i> Label tanggal penyimpanan</li>
                             </ul>
-                            <div class="storage-guide">
-                                <h4>Panduan Suhu Penyimpanan</h4>
-                                <div class="temp-guide-grid">
-                                    <div class="temp-item freezer">
-                                        <i class="fas fa-snowflake"></i>
-                                        <span>Freezer: -18°C</span>
-                                        <small>Daging, ikan beku</small>
-                                    </div>
-                                    <div class="temp-item chiller">
-                                        <i class="fas fa-thermometer-quarter"></i>
-                                        <span>Chiller: 0-4°C</span>
-                                        <small>Produk segar</small>
-                                    </div>
-                                    <div class="temp-item cool">
-                                        <i class="fas fa-thermometer-half"></i>
-                                        <span>Sejuk: 8-15°C</span>
-                                        <small>Buah, sayur</small>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
-
                     <div class="guideline-card">
                         <div class="guideline-header">
                             <i class="fas fa-fire-burner"></i>
                             <h3>3. Pengolahan Makanan</h3>
                         </div>
                         <div class="guideline-content">
-                            <ul>
+                             <ul>
                                 <li><i class="fas fa-check"></i> Cuci tangan dengan sabun sebelum dan sesudah mengolah</li>
                                 <li><i class="fas fa-check"></i> Gunakan peralatan masak yang bersih</li>
                                 <li><i class="fas fa-check"></i> Masak hingga matang sempurna (minimal 75°C untuk daging)</li>
                                 <li><i class="fas fa-check"></i> Hindari menggunakan minyak berulang kali</li>
                             </ul>
-                            <div class="cooking-temp-guide">
-                                <h4>Suhu Masak yang Aman</h4>
-                                <div class="temp-list">
-                                    <div class="temp-requirement">
-                                        <span class="food-type">Daging Sapi/Kambing</span>
-                                        <span class="temp-value">75°C</span>
-                                    </div>
-                                    <div class="temp-requirement">
-                                        <span class="food-type">Ayam</span>
-                                        <span class="temp-value">82°C</span>
-                                    </div>
-                                    <div class="temp-requirement">
-                                        <span class="food-type">Ikan</span>
-                                        <span class="temp-value">70°C</span>
-                                    </div>
-                                    <div class="temp-requirement">
-                                        <span class="food-type">Telur</span>
-                                        <span class="temp-value">71°C</span>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
-
-                    <div class="guideline-card">
+                     <div class="guideline-card">
                         <div class="guideline-header">
                             <i class="fas fa-glass-water"></i>
                             <h3>4. Pengolahan Minuman</h3>
@@ -1113,7 +993,8 @@
                 </div>
 
                 <div class="ingredients-grid" id="ingredientsGrid">
-                    </div>
+                    <!-- Dynamically populated -->
+                </div>
             </section>
 
             <section id="recipes" class="section">
@@ -1126,52 +1007,30 @@
 
                 <div class="recipes-container">
                     <div class="recipes-grid" id="recipesGrid">
-                        </div>
+                        <!-- Dynamically populated -->
+                    </div>
                 </div>
             </section>
 
             <section id="processing" class="section">
                 <div class="section-header">
                     <h2>Proses Pengolahan</h2>
-                    <button class="btn btn-success" onclick="startProcessing()">
+                    <button class="btn btn-success" onclick="openProcessingModal()">
                         <i class="fas fa-play"></i> Mulai Pengolahan
                     </button>
                 </div>
 
-                <div class="processing-dashboard">
-                    <div class="processing-queue" id="processingQueue">
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
                         <h3>Antrian Pengolahan</h3>
                         <div class="queue-list" id="queueList">
-                            </div>
+                           <!-- Dynamically populated -->
+                        </div>
                     </div>
-
-                    <div class="processing-steps" id="processingSteps">
-                        <h3>Langkah Pengolahan</h3>
+                     <div class="dashboard-card">
+                        <h3>Langkah Pengolahan Aktif</h3>
                         <div class="steps-container" id="stepsContainer">
-                            </div>
-                    </div>
-                </div>
-
-                <div class="temperature-monitor">
-                    <h3>Monitor Suhu</h3>
-                    <div class="temp-gauges">
-                        <div class="temp-gauge">
-                            <div class="gauge-circle">
-                                <span class="temp-value" id="ovenTemp">0°C</span>
-                                <span class="temp-label">Oven</span>
-                            </div>
-                        </div>
-                        <div class="temp-gauge">
-                            <div class="gauge-circle">
-                                <span class="temp-value" id="grilTemp">0°C</span>
-                                <span class="temp-label">Grill</span>
-                            </div>
-                        </div>
-                        <div class="temp-gauge">
-                            <div class="gauge-circle">
-                                <span class="temp-value" id="fryerTemp">0°C</span>
-                                <span class="temp-label">Deep Fryer</span>
-                            </div>
+                            <p>Pilih item dari antrian untuk melihat langkah-langkahnya.</p>
                         </div>
                     </div>
                 </div>
@@ -1221,7 +1080,8 @@
                             </tr>
                         </thead>
                         <tbody id="inventoryTableBody">
-                            </tbody>
+                            <!-- Dynamically populated -->
+                        </tbody>
                     </table>
                 </div>
             </section>
@@ -1234,35 +1094,18 @@
                     </button>
                 </div>
 
-                <div class="quality-dashboard">
-                    <div class="quality-metrics">
-                        <div class="metric-card">
-                            <i class="fas fa-thermometer-half"></i>
-                            <h4>Suhu Penyimpanan</h4>
-                            <div class="metric-status good">Normal</div>
-                        </div>
-                        <div class="metric-card">
-                            <i class="fas fa-tint"></i>
-                            <h4>Kebersihan Air</h4>
-                            <div class="metric-status good">Baik</div>
-                        </div>
-                        <div class="metric-card">
-                            <i class="fas fa-hands-wash"></i>
-                            <h4>Sanitasi Peralatan</h4>
-                            <div class="metric-status warning">Perlu Perhatian</div>
-                        </div>
-                    </div>
-
-                    <div class="quality-checklist">
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
                         <h3>Checklist Harian</h3>
                         <div class="checklist-container" id="qualityChecklist">
-                            </div>
+                            <p>Klik "Mulai Pemeriksaan" untuk memuat checklist.</p>
+                        </div>
                     </div>
-
-                    <div class="quality-alerts">
+                    <div class="dashboard-card">
                         <h3>Peringatan Kualitas</h3>
                         <div class="alerts-container" id="qualityAlerts">
-                            </div>
+                             <p>Tidak ada peringatan saat ini.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1270,60 +1113,38 @@
             <section id="waste" class="section">
                 <div class="section-header">
                     <h2>Pengelolaan Limbah</h2>
-                    <button class="btn btn-success" onclick="recordWaste()">
+                    <button class="btn btn-success" onclick="openWasteModal()">
                         <i class="fas fa-plus"></i> Catat Limbah
                     </button>
                 </div>
 
-                <div class="waste-summary">
-                    <div class="waste-stats">
-                        <div class="waste-stat-card organic">
-                            <i class="fas fa-leaf"></i>
-                            <h4>Limbah Organik</h4>
-                            <span class="waste-amount" id="organicWaste">0 kg</span>
+                 <div class="stats-grid">
+                    <div class="stat-card success">
+                         <div class="stat-icon"><i class="fas fa-leaf"></i></div>
+                        <div class="stat-content">
+                            <h3 id="organicWaste">0 kg</h3>
+                            <p>Limbah Organik</p>
                         </div>
-                        <div class="waste-stat-card oil">
-                            <i class="fas fa-oil-can"></i>
-                            <h4>Minyak Bekas</h4>
-                            <span class="waste-amount" id="usedOil">0 liter</span>
+                    </div>
+                     <div class="stat-card warning">
+                        <div class="stat-icon"><i class="fas fa-oil-can"></i></div>
+                        <div class="stat-content">
+                            <h3 id="usedOil">0 liter</h3>
+                            <p>Minyak Bekas</p>
                         </div>
-                        <div class="waste-stat-card packaging">
-                            <i class="fas fa-box"></i>
-                            <h4>Kemasan</h4>
-                            <span class="waste-amount" id="packaging">0 kg</span>
+                    </div>
+                    <div class="stat-card primary">
+                        <div class="stat-icon"><i class="fas fa-box"></i></div>
+                        <div class="stat-content">
+                            <h3 id="packagingWaste">0 kg</h3>
+                            <p>Kemasan</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="waste-management-guide">
-                    <div class="guide-section">
-                        <h3>Panduan Pengelolaan Limbah</h3>
-                        <div class="guide-cards">
-                            <div class="guide-card">
-                                <i class="fas fa-compost"></i>
-                                <h4>Kompos Organik</h4>
-                                <p>Sisa sayuran, kulit buah dapat diolah menjadi kompos untuk pupuk tanaman</p>
-                                <button class="btn btn-sm btn-success">Pelajari Cara</button>
-                            </div>
-                            <div class="guide-card">
-                                <i class="fas fa-soap"></i>
-                                <h4>Daur Ulang Minyak</h4>
-                                <p>Minyak bekas dapat diolah menjadi sabun atau biodiesel</p>
-                                <button class="btn btn-sm btn-success">Pelajari Cara</button>
-                            </div>
-                            <div class="guide-card">
-                                <i class="fas fa-recycle"></i>
-                                <h4>Kemasan Ramah Lingkungan</h4>
-                                <p>Pilih kemasan yang dapat didaur ulang atau gunakan kemasan reusable</p>
-                                <button class="btn btn-sm btn-success">Tips Kemasan</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="waste-tracking">
-                    <h3>Pelacakan Limbah Mingguan</h3>
-                    <div class="waste-chart-container">
+                <div class="dashboard-card">
+                     <h3>Pelacakan Limbah Mingguan</h3>
+                     <div class="waste-chart-container" style="height: 300px;">
                         <canvas id="wasteChart"></canvas>
                     </div>
                 </div>
@@ -1333,11 +1154,10 @@
                 <div class="section-header">
                     <h2>Laporan & Analisis</h2>
                     <div class="report-controls">
-                        <select id="reportPeriod" class="report-select">
+                        <select id="reportPeriod" class="filter-select">
                             <option value="daily">Harian</option>
                             <option value="weekly">Mingguan</option>
                             <option value="monthly">Bulanan</option>
-                            <option value="yearly">Tahunan</option>
                         </select>
                         <button class="btn btn-primary" onclick="generateReport()">
                             <i class="fas fa-file-alt"></i> Generate Laporan
@@ -1345,114 +1165,25 @@
                     </div>
                 </div>
 
-                <div class="reports-grid">
-                    <div class="report-card">
-                        <h3>Efisiensi Bahan</h3>
-                        <div class="report-content">
-                            <div class="efficiency-meter">
-                                <div class="meter-value" id="materialEfficiency">85%</div>
-                                <div class="meter-label">Efisiensi</div>
-                            </div>
-                            <div class="efficiency-details">
-                                <p>Penggunaan bahan optimal dengan minimal limbah</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="report-card">
-                        <h3>Biaya Produksi</h3>
-                        <div class="report-content">
-                            <div class="cost-breakdown" id="costBreakdown">
-                                </div>
-                        </div>
-                    </div>
-
-                    <div class="report-card">
-                        <h3>Popularitas Menu</h3>
-                        <div class="report-content">
-                            <div class="popularity-chart">
-                                <canvas id="popularityChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="report-card">
-                        <h3>Tren Kualitas</h3>
-                        <div class="report-content">
-                            <div class="quality-trend">
-                                <canvas id="qualityTrendChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="detailed-reports">
+                <div class="dashboard-card">
                     <h3>Laporan Detail</h3>
                     <div class="report-tabs">
                         <button class="tab-btn active" data-tab="inventory-report">Inventori</button>
                         <button class="tab-btn" data-tab="production-report">Produksi</button>
                         <button class="tab-btn" data-tab="waste-report">Limbah</button>
-                        <button class="tab-btn" data-tab="financial-report">Keuangan</button>
                     </div>
                     
                     <div class="report-content-container">
                         <div id="inventory-report" class="report-tab-content active">
-                            <table class="report-table">
-                                <thead>
-                                    <tr>
-                                        <th>Bahan</th>
-                                        <th>Stok Awal</th>
-                                        <th>Pembelian</th>
-                                        <th>Terpakai</th>
-                                        <th>Sisa</th>
-                                        <th>Nilai</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="inventoryReportBody">
-                                    </tbody>
-                            </table>
+                            <p>Klik "Generate Laporan" untuk melihat data.</p>
                         </div>
                         
                         <div id="production-report" class="report-tab-content">
-                            <div class="production-metrics">
-                                <div class="metric">
-                                    <span class="metric-label">Total Menu Diproduksi</span>
-                                    <span class="metric-value" id="totalProduced">0</span>
-                                </div>
-                                <div class="metric">
-                                    <span class="metric-label">Waktu Rata-rata Produksi</span>
-                                    <span class="metric-value" id="avgProductionTime">0 menit</span>
-                                </div>
-                                <div class="metric">
-                                    <span class="metric-label">Tingkat Kegagalan</span>
-                                    <span class="metric-value" id="failureRate">0%</span>
-                                </div>
-                            </div>
+                            <p>Klik "Generate Laporan" untuk melihat data.</p>
                         </div>
                         
                         <div id="waste-report" class="report-tab-content">
-                            <div class="waste-summary-detail">
-                                <h4>Ringkasan Limbah</h4>
-                                <div id="wasteSummaryDetail">
-                                    </div>
-                            </div>
-                        </div>
-                        
-                        <div id="financial-report" class="report-tab-content">
-                            <div class="financial-overview">
-                                <div class="financial-metric">
-                                    <h4>Total Biaya Bahan</h4>
-                                    <span class="amount" id="totalMaterialCost">Rp 0</span>
-                                </div>
-                                <div class="financial-metric">
-                                    <h4>Estimasi Pendapatan</h4>
-                                    <span class="amount" id="estimatedRevenue">Rp 0</span>
-                                </div>
-                                <div class="financial-metric">
-                                    <h4>Margin Keuntungan</h4>
-                                    <span class="amount" id="profitMargin">0%</span>
-                                </div>
-                            </div>
+                             <p>Klik "Generate Laporan" untuk melihat data.</p>
                         </div>
                     </div>
                 </div>
@@ -1460,6 +1191,7 @@
         </main>
     </div>
 
+    <!-- Modals -->
     <div id="ingredientModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1668,7 +1400,6 @@
                             <option value="organik">Organik</option>
                             <option value="minyak">Minyak Bekas</option>
                             <option value="kemasan">Kemasan</option>
-                            <option value="sisa-makanan">Sisa Makanan</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -1681,23 +1412,12 @@
                             <option value="">Pilih Satuan</option>
                             <option value="kg">Kilogram</option>
                             <option value="liter">Liter</option>
-                            <option value="pcs">Pieces</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="wasteSource">Sumber*</label>
                         <input type="text" id="wasteSource" required placeholder="Contoh: Dapur Utama">
                     </div>
-                </div>
-                <div class="form-group full-width">
-                    <label for="wasteDisposal">Metode Pengelolaan*</label>
-                    <select id="wasteDisposal" required>
-                        <option value="">Pilih Metode</option>
-                        <option value="kompos">Kompos</option>
-                        <option value="daur-ulang">Daur Ulang</option>
-                        <option value="tpa">Tempat Pembuangan Akhir</option>
-                        <option value="pengolahan-khusus">Pengolahan Khusus</option>
-                    </select>
                 </div>
                 <div class="form-group full-width">
                     <label for="wasteNotes">Catatan</label>
@@ -1712,7 +1432,7 @@
     </div>
 
     <div id="confirmModal" class="modal">
-        <div class="modal-content small">
+        <div class="modal-content" style="max-width: 400px;">
             <div class="modal-header">
                 <h3 id="confirmTitle">Konfirmasi</h3>
                 <span class="close" onclick="closeModal('confirmModal')">&times;</span>
@@ -1727,512 +1447,762 @@
         </div>
     </div>
 
-    <div id="toast-container" class="toast-container">
-        </div>
-
-    <div id="loadingOverlay" class="loading-overlay">
-        <div class="loading-spinner">
-            <i class="fas fa-spinner fa-spin"></i>
-            <p>Loading...</p>
-        </div>
-    </div>
+    <div id="toast-container" class="toast-container"></div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
 
-            // --- MOCK DATABASE ---
-            // In a real application, this data would come from a server API.
-            let ingredients = [
-                { id: 1, name: 'Beras Premium', category: 'karbohidrat', stock: 50, unit: 'kg', price: 15000, minStock: 10, storage: 'kering', expiry: '2026-12-31' },
-                { id: 2, name: 'Dada Ayam Fillet', category: 'protein', stock: 15.5, unit: 'kg', price: 55000, minStock: 5, storage: 'freezer', expiry: '2025-09-10' },
-                { id: 3, name: 'Telur Ayam', category: 'protein', stock: 100, unit: 'pcs', price: 2000, minStock: 20, storage: 'chiller', expiry: '2025-09-25' },
-                { id: 4, name: 'Bawang Merah', category: 'rempah', stock: 5, unit: 'kg', price: 35000, minStock: 1, storage: 'suhu-ruang', expiry: '2025-10-30' },
-                { id: 5, name: 'Minyak Goreng', category: 'lainnya', stock: 20, unit: 'liter', price: 25000, minStock: 5, storage: 'kering', expiry: '2026-06-01' },
-                { id: 6, name: 'Tomat', category: 'sayuran', stock: 3.2, unit: 'kg', price: 12000, minStock: 1, storage: 'chiller', expiry: '2025-09-08' },
-            ];
+        // --- MOCK DATABASE ---
+        let ingredients = [
+            { id: 1, name: 'Beras Premium', category: 'karbohidrat', stock: 50, unit: 'kg', price: 15000, minStock: 10, storage: 'kering', expiry: '2026-12-31' },
+            { id: 2, name: 'Dada Ayam Fillet', category: 'protein', stock: 15.5, unit: 'kg', price: 55000, minStock: 5, storage: 'freezer', expiry: '2025-09-10' },
+            { id: 3, name: 'Telur Ayam', category: 'protein', stock: 100, unit: 'pcs', price: 2000, minStock: 20, storage: 'chiller', expiry: '2025-09-25' },
+            { id: 4, name: 'Bawang Merah', category: 'rempah', stock: 5, unit: 'kg', price: 35000, minStock: 1, storage: 'suhu-ruang', expiry: '2025-10-30' },
+            { id: 5, name: 'Minyak Goreng', category: 'lainnya', stock: 20, unit: 'liter', price: 25000, minStock: 5, storage: 'kering', expiry: '2026-06-01' },
+            { id: 6, name: 'Tomat', category: 'sayuran', stock: 3.2, unit: 'kg', price: 12000, minStock: 1, storage: 'chiller', expiry: '2025-09-08' },
+        ];
 
-            let recipes = [
-                { id: 1, name: 'Nasi Goreng Spesial', category: 'makanan-utama', servings: 2, cookTime: 20, difficulty: 'mudah', price: 25000,
-                image: 'https://via.placeholder.com/300x150/4A90E2/FFFFFF?text=Nasi+Goreng',
-                ingredients: [{ id: 1, amount: 0.2 }, { id: 3, amount: 2 }, { id: 4, amount: 0.05 }, { id: 5, amount: 0.03 }],
-                instructions: '1. Panaskan minyak, tumis bumbu.\n2. Masukkan telur, orak-arik.\n3. Masukkan nasi dan aduk rata.\n4. Sajikan hangat.' },
-                { id: 2, name: 'Ayam Bakar Madu', category: 'makanan-utama', servings: 4, cookTime: 60, difficulty: 'sedang', price: 80000,
-                image: 'https://via.placeholder.com/300x150/50E3C2/FFFFFF?text=Ayam+Bakar',
-                ingredients: [{ id: 2, amount: 1 }, { id: 4, amount: 0.1 }],
-                instructions: '1. Haluskan bumbu dan campur dengan madu.\n2. Ungkep ayam dengan bumbu.\n3. Bakar ayam hingga matang sambil dioles sisa bumbu.' },
-            ];
+        let recipes = [
+            { id: 1, name: 'Nasi Goreng Spesial', category: 'makanan-utama', servings: 2, cookTime: 20, difficulty: 'mudah', price: 25000,
+            image: 'https://placehold.co/300x150/4A90E2/FFFFFF?text=Nasi+Goreng',
+            ingredients: [{ id: 1, amount: 0.2 }, { id: 3, amount: 2 }, { id: 4, amount: 0.05 }, { id: 5, amount: 0.03 }],
+            instructions: '1. Panaskan minyak, tumis bumbu.\n2. Masukkan telur, orak-arik.\n3. Masukkan nasi dan aduk rata.\n4. Sajikan hangat.' },
+            { id: 2, name: 'Ayam Bakar Madu', category: 'makanan-utama', servings: 4, cookTime: 60, difficulty: 'sedang', price: 80000,
+            image: 'https://placehold.co/300x150/50E3C2/FFFFFF?text=Ayam+Bakar',
+            ingredients: [{ id: 2, amount: 1 }, { id: 4, amount: 0.1 }],
+            instructions: '1. Haluskan bumbu dan campur dengan madu.\n2. Ungkep ayam dengan bumbu.\n3. Bakar ayam hingga matang sambil dioles sisa bumbu.' },
+        ];
+        
+        // Mock historical data for reports
+        const today = new Date();
+        const yesterday = new Date(new Date().setDate(today.getDate() - 1));
+        const lastWeek = new Date(new Date().setDate(today.getDate() - 7));
+        const lastMonth = new Date(new Date().setDate(today.getDate() - 30));
 
-            let wasteData = [];
-            let processingQueue = [];
+        let wasteData = [
+            { id: 1, type: 'organik', amount: 2.5, unit: 'kg', source: 'Dapur Utama', date: yesterday },
+            { id: 2, type: 'minyak', amount: 0.5, unit: 'liter', source: 'Penggorengan', date: lastWeek },
+            { id: 3, type: 'kemasan', amount: 1.2, unit: 'kg', source: 'Penerimaan Barang', date: lastMonth },
+        ];
+        let productionHistory = [
+            { id: 1, recipeName: 'Nasi Goreng Spesial', quantity: 10, chef: 'Budi', date: yesterday, status: 'Selesai' },
+            { id: 2, recipeName: 'Ayam Bakar Madu', quantity: 5, chef: 'Siti', date: lastWeek, status: 'Selesai' },
+            { id: 3, recipeName: 'Nasi Goreng Spesial', quantity: 15, chef: 'Budi', date: lastMonth, status: 'Selesai' },
+        ];
 
-            // --- CHART INSTANCES ---
-            let wasteChartInstance, popularityChartInstance, qualityTrendChartInstance;
+        let processingQueue = [];
+        let activities = [];
 
-            // --- DOM ELEMENT SELECTORS ---
-            const pageTitle = document.getElementById('page-title');
-            const sidebar = document.getElementById('sidebar');
-            const mainContent = document.querySelector('.main-content');
+        // --- CHART INSTANCES ---
+        let wasteChartInstance;
 
-            // --- CORE APP LOGIC ---
+        // --- DOM ELEMENT SELECTORS ---
+        const pageTitle = document.getElementById('page-title');
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.querySelector('.main-content');
 
-            // Function to switch between sections (pages)
-            const switchSection = (sectionId) => {
-                document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
-                document.getElementById(sectionId)?.classList.add('active');
+        // --- CORE APP LOGIC ---
 
-                document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-                document.querySelector(`.nav-link[data-section="${sectionId}"]`)?.closest('.nav-item').classList.add('active');
-                
-                const newTitle = document.querySelector(`.nav-link[data-section="${sectionId}"] span`).textContent;
-                pageTitle.textContent = newTitle;
+        const addActivity = (icon, text) => {
+            const time = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+            activities.unshift({ icon, text, time });
+            if (activities.length > 5) {
+                activities.pop();
+            }
+            renderActivities();
+        };
 
-                // Re-render charts if they are in the active section to ensure they display correctly
-                if (sectionId === 'reports') {
-                    renderAllCharts();
-                }
-            };
+        const renderActivities = () => {
+            const list = document.getElementById('activityList');
+            list.innerHTML = activities.map(act => `
+                <div class="activity-item">
+                    <i class="${act.icon}"></i>
+                    <span>${act.text}</span>
+                    <small>${act.time}</small>
+                </div>
+            `).join('');
+            if (!activities.length) {
+                list.innerHTML = '<p>Belum ada aktivitas terbaru.</p>';
+            }
+        };
 
-            // Navigation link click handler
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const sectionId = e.currentTarget.dataset.section;
-                    switchSection(sectionId);
-                });
-            });
+        const switchSection = (sectionId) => {
+            document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId)?.classList.add('active');
 
-            // Sidebar toggle handler
-            document.getElementById('sidebarToggle').addEventListener('click', () => {
-                sidebar.classList.toggle('collapsed');
-                mainContent.classList.toggle('full-width');
-            });
-
-            // --- MODAL HANDLING ---
-            window.openModal = (modalId) => document.getElementById(modalId).classList.add('active');
-            window.closeModal = (modalId) => {
-                const modal = document.getElementById(modalId);
-                modal.classList.remove('active');
-                // Reset forms within the modal when closed
-                modal.querySelectorAll('form').forEach(form => form.reset());
-                if (modalId === 'recipeModal') {
-                    // Clear dynamically added ingredient rows
-                    const ingredientContainer = document.getElementById('recipeIngredients');
-                    while (ingredientContainer.children.length > 1) {
-                        ingredientContainer.removeChild(ingredientContainer.lastChild);
-                    }
-                }
-            };
-
-            // Close modal when clicking outside of it
-            window.addEventListener('click', (e) => {
-                if (e.target.classList.contains('modal')) {
-                    closeModal(e.target.id);
-                }
-            });
-
-            // --- DATA RENDERING FUNCTIONS ---
-
-            // Update Dashboard Stats
-            const updateDashboard = () => {
-                document.getElementById('totalRecipes').textContent = recipes.length;
-                document.getElementById('totalIngredients').textContent = ingredients.length;
-                
-                const lowStock = ingredients.filter(i => i.stock <= i.minStock).length;
-                document.getElementById('lowStockItems').textContent = lowStock;
-                
-                const today = new Date();
-                const nextWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
-                const expiring = ingredients.filter(i => i.expiry && new Date(i.expiry) <= nextWeek).length;
-                document.getElementById('expiringItems').textContent = expiring;
-
-                document.getElementById('notificationCount').textContent = lowStock + expiring;
-            };
-
-            // Render Ingredients Grid
-            const renderIngredients = () => {
-                const grid = document.getElementById('ingredientsGrid');
-                grid.innerHTML = '';
-                ingredients.forEach(ing => {
-                    const stockStatus = ing.stock <= ing.minStock ? '<span class="status-badge status-low">Stok Rendah</span>' : '<span class="status-badge status-good">Cukup</span>';
-                    grid.innerHTML += `
-                        <div class="ingredient-card">
-                            <div class="ingredient-card-header">
-                                <h4>${ing.name}</h4>
-                                <small>${ing.category}</small>
-                            </div>
-                            <div class="ingredient-card-body">
-                                <p class="ingredient-info"><strong>Stok:</strong> ${ing.stock} ${ing.unit}</p>
-                                <p class="ingredient-info"><strong>Harga:</strong> Rp ${ing.price.toLocaleString('id-ID')}/${ing.unit}</p>
-                                <p class="ingredient-info"><strong>Penyimpanan:</strong> ${ing.storage}</p>
-                                <p class="ingredient-info"><strong>Kedaluwarsa:</strong> ${ing.expiry || 'N/A'}</p>
-                                <div>${stockStatus}</div>
-                            </div>
-                            <div class="ingredient-card-footer">
-                                <button class="btn btn-sm btn-secondary" onclick="editIngredient(${ing.id})"><i class="fas fa-edit"></i> Edit</button>
-                                <button class="btn btn-sm btn-danger" onclick="confirmDelete('ingredient', ${ing.id})"><i class="fas fa-trash"></i> Hapus</button>
-                            </div>
-                        </div>
-                    `;
-                });
-            };
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            document.querySelector(`.nav-link[data-section="${sectionId}"]`)?.closest('.nav-item').classList.add('active');
             
-            // Render Recipes Grid
-            const renderRecipes = () => {
-                const grid = document.getElementById('recipesGrid');
-                grid.innerHTML = '';
-                recipes.forEach(rec => {
-                    grid.innerHTML += `
-                        <div class="recipe-card">
-                            <div class="recipe-card-image" style="background-image: url('${rec.image}')"></div>
-                            <div class="recipe-card-header">
-                                <h4>${rec.name}</h4>
-                            </div>
-                            <div class="recipe-card-body">
-                                <p class="recipe-info"><strong>Kategori:</strong> ${rec.category}</p>
-                                <p class="recipe-info"><strong>Porsi:</strong> ${rec.servings}</p>
-                                <p class="recipe-info"><strong>Waktu:</strong> ${rec.cookTime} menit</p>
-                                <p class="recipe-info"><strong>Kesulitan:</strong> ${rec.difficulty}</p>
-                            </div>
-                            <div class="recipe-card-footer">
-                                <button class="btn btn-sm btn-success" onclick="startProcessingFromRecipe(${rec.id})"><i class="fas fa-play"></i> Masak</button>
-                                <button class="btn btn-sm btn-secondary" onclick="editRecipe(${rec.id})"><i class="fas fa-edit"></i> Edit</button>
-                                <button class="btn btn-sm btn-danger" onclick="confirmDelete('recipe', ${rec.id})"><i class="fas fa-trash"></i> Hapus</button>
-                            </div>
-                        </div>
-                    `;
-                });
-            };
+            const newTitle = document.querySelector(`.nav-link[data-section="${sectionId}"] span`).textContent;
+            pageTitle.textContent = newTitle;
             
-            // Render Inventory Table
-            const renderInventory = () => {
-                const tableBody = document.getElementById('inventoryTableBody');
-                tableBody.innerHTML = '';
-                let totalValue = 0;
+            if (sectionId === 'waste') {
+                setTimeout(() => renderWasteChart(), 50); 
+            }
+        };
 
-                ingredients.forEach(ing => {
-                    const today = new Date();
-                    const expiryDate = new Date(ing.expiry);
-                    const daysUntilExpiry = Math.ceil((expiryDate - today) / (1000 * 60 * 60 * 24));
-                    
-                    let status = '<span class="status-badge status-good">Aman</span>';
-                    if (ing.stock <= ing.minStock) {
-                        status = `<span class="status-badge status-low">Stok Rendah</span>`;
-                    } else if (ing.expiry && daysUntilExpiry <= 7 && daysUntilExpiry > 0) {
-                        status = `<span class="status-badge status-expiring">Akan Kedaluwarsa</span>`;
-                    } else if (ing.expiry && daysUntilExpiry <= 0) {
-                        status = `<span class="status-badge status-danger">Kedaluwarsa</span>`;
-                    }
-                    
-                    const itemTotalValue = ing.stock * ing.price;
-                    totalValue += itemTotalValue;
-
-                    tableBody.innerHTML += `
-                        <tr>
-                            <td>${ing.name}</td>
-                            <td>${ing.category}</td>
-                            <td>${ing.stock}</td>
-                            <td>${ing.unit}</td>
-                            <td>Rp ${ing.price.toLocaleString('id-ID')}</td>
-                            <td>Rp ${itemTotalValue.toLocaleString('id-ID')}</td>
-                            <td>${ing.expiry || 'N/A'}</td>
-                            <td>${status}</td>
-                            <td>
-                                <button class="btn btn-sm btn-secondary" onclick="editIngredient(${ing.id})"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-sm btn-danger" onclick="confirmDelete('ingredient', ${ing.id})"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                    `;
-                });
-
-                document.getElementById('totalInventoryValue').textContent = `Rp ${totalValue.toLocaleString('id-ID')}`;
-                document.getElementById('lowStockCount').textContent = ingredients.filter(i => i.stock <= i.minStock).length;
-                document.getElementById('expiringCount').textContent = ingredients.filter(i => i.expiry && new Date(i.expiry) <= new Date(new Date().setDate(new Date().getDate() + 7))).length;
-            };
-
-
-            // --- CRUD and other actions ---
-
-            // Ingredient Form Handling
-            const ingredientForm = document.getElementById('ingredientForm');
-            ingredientForm.addEventListener('submit', (e) => {
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
                 e.preventDefault();
-                const id = document.getElementById('ingredientId').value;
-                const newIngredient = {
-                    name: document.getElementById('ingredientName').value,
-                    category: document.getElementById('ingredientCategory').value,
-                    stock: parseFloat(document.getElementById('ingredientStock').value),
-                    unit: document.getElementById('ingredientUnit').value,
-                    price: parseFloat(document.getElementById('ingredientPrice').value),
-                    minStock: parseFloat(document.getElementById('ingredientMinStock').value),
-                    storage: document.getElementById('ingredientStorage').value,
-                    expiry: document.getElementById('ingredientExpiry').value,
-                };
-
-                if (id) { // Update
-                    const index = ingredients.findIndex(i => i.id == id);
-                    ingredients[index] = { ...ingredients[index], ...newIngredient };
-                    showToast('Bahan berhasil diperbarui!', 'success');
-                } else { // Create
-                    newIngredient.id = Date.now();
-                    ingredients.push(newIngredient);
-                    showToast('Bahan baru berhasil ditambahkan!', 'success');
-                }
-
-                closeModal('ingredientModal');
-                initializeAppState();
+                const sectionId = e.currentTarget.dataset.section;
+                switchSection(sectionId);
             });
-
-            window.openIngredientModal = () => {
-                document.getElementById('ingredientModalTitle').textContent = 'Tambah Bahan Baru';
-                ingredientForm.reset();
-                document.getElementById('ingredientId').value = '';
-                openModal('ingredientModal');
-            };
-
-            window.editIngredient = (id) => {
-                const ing = ingredients.find(i => i.id === id);
-                if (!ing) return;
-                
-                document.getElementById('ingredientModalTitle').textContent = 'Edit Bahan';
-                document.getElementById('ingredientId').value = ing.id;
-                document.getElementById('ingredientName').value = ing.name;
-                document.getElementById('ingredientCategory').value = ing.category;
-                document.getElementById('ingredientStock').value = ing.stock;
-                document.getElementById('ingredientUnit').value = ing.unit;
-                document.getElementById('ingredientPrice').value = ing.price;
-                document.getElementById('ingredientMinStock').value = ing.minStock;
-                document.getElementById('ingredientStorage').value = ing.storage;
-                document.getElementById('ingredientExpiry').value = ing.expiry;
-
-                openModal('ingredientModal');
-            };
-            
-            // Recipe Form Handling
-            const recipeForm = document.getElementById('recipeForm');
-            recipeForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const id = document.getElementById('recipeId').value;
-                const recipeIngredients = [];
-                document.querySelectorAll('.ingredient-row').forEach(row => {
-                    const ingId = row.querySelector('.ingredient-select').value;
-                    const ingAmount = row.querySelector('input[name="ingredientAmount[]"]').value;
-                    if (ingId && ingAmount) {
-                        recipeIngredients.push({ id: parseInt(ingId), amount: parseFloat(ingAmount) });
-                    }
-                });
-
-                const newRecipe = {
-                    name: document.getElementById('recipeName').value,
-                    category: document.getElementById('recipeCategory').value,
-                    servings: parseInt(document.getElementById('recipeServings').value),
-                    cookTime: parseInt(document.getElementById('recipeCookTime').value),
-                    difficulty: document.getElementById('recipeDifficulty').value,
-                    price: parseFloat(document.getElementById('recipePrice').value),
-                    image: 'https://via.placeholder.com/300x150/CCCCCC/FFFFFF?text=New+Recipe', // Placeholder
-                    ingredients: recipeIngredients,
-                    instructions: document.getElementById('recipeInstructions').value,
-                };
-
-                if (id) { // Update
-                    const index = recipes.findIndex(r => r.id == id);
-                    recipes[index] = { ...recipes[index], ...newRecipe };
-                    showToast('Resep berhasil diperbarui!', 'success');
-                } else { // Create
-                    newRecipe.id = Date.now();
-                    recipes.push(newRecipe);
-                    showToast('Resep baru berhasil ditambahkan!', 'success');
-                }
-
-                closeModal('recipeModal');
-                initializeAppState();
-            });
-
-            window.openRecipeModal = () => {
-                document.getElementById('recipeModalTitle').textContent = 'Tambah Resep Baru';
-                recipeForm.reset();
-                document.getElementById('recipeId').value = '';
-                populateIngredientSelects();
-                openModal('recipeModal');
-            };
-
-            window.editRecipe = (id) => {
-                const rec = recipes.find(r => r.id === id);
-                if (!rec) return;
-
-                document.getElementById('recipeModalTitle').textContent = 'Edit Resep';
-                document.getElementById('recipeId').value = rec.id;
-                document.getElementById('recipeName').value = rec.name;
-                document.getElementById('recipeCategory').value = rec.category;
-                document.getElementById('recipeServings').value = rec.servings;
-                document.getElementById('recipeCookTime').value = rec.cookTime;
-                document.getElementById('recipeDifficulty').value = rec.difficulty;
-                document.getElementById('recipePrice').value = rec.price;
-                document.getElementById('recipeInstructions').value = rec.instructions;
-
-                const container = document.getElementById('recipeIngredients');
-                container.innerHTML = ''; // Clear existing
-                rec.ingredients.forEach(ing => addIngredientRow(ing.id, ing.amount));
-
-                openModal('recipeModal');
-            };
-
-            const populateIngredientSelects = (selectElement) => {
-                const selects = selectElement ? [selectElement] : document.querySelectorAll('.ingredient-select');
-                selects.forEach(select => {
-                    select.innerHTML = '<option value="">Pilih Bahan</option>';
-                    ingredients.forEach(ing => {
-                        select.innerHTML += `<option value="${ing.id}">${ing.name} (${ing.unit})</option>`;
-                    });
-                });
-            };
-
-            window.addIngredientRow = (selectedId = '', amount = '') => {
-                const container = document.getElementById('recipeIngredients');
-                const newRow = document.createElement('div');
-                newRow.className = 'ingredient-row';
-                newRow.innerHTML = `
-                    <select class="ingredient-select" name="ingredientId[]" required></select>
-                    <input type="number" name="ingredientAmount[]" placeholder="Jumlah" min="0" step="0.1" value="${amount}" required>
-                    <button type="button" class="btn btn-sm btn-danger" onclick="removeIngredientRow(this)">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                `;
-                container.appendChild(newRow);
-                const newSelect = newRow.querySelector('.ingredient-select');
-                populateIngredientSelects(newSelect);
-                if (selectedId) {
-                    newSelect.value = selectedId;
-                }
-            };
-
-            window.removeIngredientRow = (button) => {
-                button.closest('.ingredient-row').remove();
-            };
-
-            // Deletion confirmation
-            window.confirmDelete = (type, id) => {
-                const confirmModal = document.getElementById('confirmModal');
-                const confirmMessage = document.getElementById('confirmMessage');
-                const confirmBtn = document.getElementById('confirmBtn');
-
-                let itemName = '';
-                if (type === 'ingredient') {
-                    itemName = ingredients.find(i => i.id === id)?.name;
-                } else if (type === 'recipe') {
-                    itemName = recipes.find(r => r.id === id)?.name;
-                }
-
-                confirmMessage.textContent = `Apakah Anda yakin ingin menghapus "${itemName}"? Tindakan ini tidak dapat diurungkan.`;
-                confirmBtn.onclick = () => {
-                    deleteItem(type, id);
-                    closeModal('confirmModal');
-                };
-                openModal('confirmModal');
-            };
-
-            const deleteItem = (type, id) => {
-                if (type === 'ingredient') {
-                    ingredients = ingredients.filter(i => i.id !== id);
-                } else if (type === 'recipe') {
-                    recipes = recipes.filter(r => r.id !== id);
-                }
-                showToast('Item berhasil dihapus.', 'success');
-                initializeAppState();
-            };
-
-
-            // --- Toast Notification ---
-            const showToast = (message, type = 'info') => {
-                const toastContainer = document.getElementById('toast-container');
-                const toast = document.createElement('div');
-                toast.className = `toast ${type}`;
-                toast.textContent = message;
-                toastContainer.appendChild(toast);
-                
-                setTimeout(() => {
-                    toast.classList.add('show');
-                }, 100);
-
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                    setTimeout(() => {
-                        toast.remove();
-                    }, 300);
-                }, 3000);
-            };
-            
-            // --- Chart Rendering (using Chart.js) ---
-            const renderAllCharts = () => {
-                renderWasteChart();
-                renderPopularityChart();
-                renderQualityTrendChart();
-            };
-            
-            const renderWasteChart = () => {
-                const ctx = document.getElementById('wasteChart').getContext('2d');
-                if(wasteChartInstance) wasteChartInstance.destroy();
-                wasteChartInstance = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['Organik', 'Minyak Bekas', 'Kemasan', 'Sisa Makanan'],
-                        datasets: [{
-                            label: 'Jumlah Limbah (kg/liter)',
-                            data: [12, 5, 8, 4], // Sample data
-                            backgroundColor: ['#50E3C2', '#F5A623', '#4A90E2', '#D0021B'],
-                        }]
-                    },
-                    options: { responsive: true, maintainAspectRatio: false }
-                });
-            };
-
-            const renderPopularityChart = () => {
-                const ctx = document.getElementById('popularityChart').getContext('2d');
-                if(popularityChartInstance) popularityChartInstance.destroy();
-                popularityChartInstance = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: recipes.map(r => r.name),
-                        datasets: [{
-                            label: 'Popularitas',
-                            data: recipes.map(() => Math.floor(Math.random() * 100) + 20), // Random sample data
-                            backgroundColor: ['#4A90E2', '#50E3C2', '#F5A623', '#D0021B', '#BD10E0'],
-                        }]
-                    },
-                    options: { responsive: true, maintainAspectRatio: false }
-                });
-            };
-            
-            const renderQualityTrendChart = () => {
-                const ctx = document.getElementById('qualityTrendChart').getContext('2d');
-                if(qualityTrendChartInstance) qualityTrendChartInstance.destroy();
-                qualityTrendChartInstance = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
-                        datasets: [{
-                            label: 'Skor Kualitas Harian',
-                            data: [95, 97, 96, 92, 98, 97, 99], // Sample data
-                            borderColor: '#4A90E2',
-                            tension: 0.3,
-                            fill: false,
-                        }]
-                    },
-                    options: { responsive: true, maintainAspectRatio: false }
-                });
-            };
-            
-            // --- Initializer ---
-            const initializeAppState = () => {
-                updateDashboard();
-                renderIngredients();
-                renderRecipes();
-                renderInventory();
-            };
-
-            initializeAppState();
-            switchSection('dashboard'); // Start on dashboard
-
         });
+
+        document.getElementById('sidebarToggle').addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+            mainContent.classList.toggle('full-width');
+        });
+
+        // --- MODAL HANDLING ---
+        window.openModal = (modalId) => document.getElementById(modalId).classList.add('active');
+        window.closeModal = (modalId) => {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('active');
+            modal.querySelectorAll('form').forEach(form => form.reset());
+            if (modalId === 'recipeModal') {
+                const ingredientContainer = document.getElementById('recipeIngredients');
+                while (ingredientContainer.children.length > 1) {
+                    ingredientContainer.removeChild(ingredientContainer.lastChild);
+                }
+            }
+        };
+
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                closeModal(e.target.id);
+            }
+        });
+
+        // --- DATA RENDERING FUNCTIONS ---
+        const updateDashboard = () => {
+            document.getElementById('totalRecipes').textContent = recipes.length;
+            document.getElementById('totalIngredients').textContent = ingredients.length;
+            
+            const lowStock = ingredients.filter(i => i.stock <= i.minStock).length;
+            document.getElementById('lowStockItems').textContent = lowStock;
+            
+            const today = new Date();
+            const nextWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
+            const expiring = ingredients.filter(i => i.expiry && new Date(i.expiry) <= nextWeek).length;
+            document.getElementById('expiringItems').textContent = expiring;
+        };
+
+        const renderIngredients = () => {
+            const grid = document.getElementById('ingredientsGrid');
+            grid.innerHTML = '';
+            ingredients.forEach(ing => {
+                const stockStatus = ing.stock <= ing.minStock ? '<span class="status-badge status-low">Stok Rendah</span>' : '<span class="status-badge status-good">Cukup</span>';
+                grid.innerHTML += `
+                    <div class="ingredient-card">
+                        <div class="ingredient-card-header">
+                            <h4>${ing.name}</h4>
+                            <small>${ing.category}</small>
+                        </div>
+                        <div class="ingredient-card-body">
+                            <p class="ingredient-info"><strong>Stok:</strong> ${ing.stock} ${ing.unit}</p>
+                            <p class="ingredient-info"><strong>Harga:</strong> Rp ${ing.price.toLocaleString('id-ID')}/${ing.unit}</p>
+                            <p class="ingredient-info"><strong>Penyimpanan:</strong> ${ing.storage}</p>
+                            <p class="ingredient-info"><strong>Kedaluwarsa:</strong> ${ing.expiry || 'N/A'}</p>
+                            <div>${stockStatus}</div>
+                        </div>
+                        <div class="ingredient-card-footer">
+                            <button class="btn btn-sm btn-secondary" onclick="editIngredient(${ing.id})"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="btn btn-sm btn-danger" onclick="confirmDelete('ingredient', ${ing.id})"><i class="fas fa-trash"></i> Hapus</button>
+                        </div>
+                    </div>
+                `;
+            });
+        };
+        
+        const renderRecipes = () => {
+            const grid = document.getElementById('recipesGrid');
+            grid.innerHTML = '';
+            recipes.forEach(rec => {
+                grid.innerHTML += `
+                    <div class="recipe-card">
+                        <div class="recipe-card-image" style="background-image: url('${rec.image}')"></div>
+                        <div class="recipe-card-header">
+                            <h4>${rec.name}</h4>
+                        </div>
+                        <div class="recipe-card-body">
+                            <p class="recipe-info"><strong>Kategori:</strong> ${rec.category}</p>
+                            <p class="recipe-info"><strong>Porsi:</strong> ${rec.servings}</p>
+                            <p class="recipe-info"><strong>Waktu:</strong> ${rec.cookTime} menit</p>
+                            <p class="recipe-info"><strong>Kesulitan:</strong> ${rec.difficulty}</p>
+                        </div>
+                        <div class="recipe-card-footer">
+                            <button class="btn btn-sm btn-success" onclick="startProcessingFromRecipe(${rec.id})"><i class="fas fa-play"></i> Masak</button>
+                            <button class="btn btn-sm btn-secondary" onclick="editRecipe(${rec.id})"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="btn btn-sm btn-danger" onclick="confirmDelete('recipe', ${rec.id})"><i class="fas fa-trash"></i> Hapus</button>
+                        </div>
+                    </div>
+                `;
+            });
+        };
+        
+        const renderInventory = () => {
+            const tableBody = document.getElementById('inventoryTableBody');
+            tableBody.innerHTML = '';
+            let totalValue = 0;
+
+            ingredients.forEach(ing => {
+                const today = new Date();
+                const expiryDate = new Date(ing.expiry);
+                const daysUntilExpiry = Math.ceil((expiryDate - today) / (1000 * 60 * 60 * 24));
+                
+                let status = '<span class="status-badge status-good">Aman</span>';
+                if (ing.stock <= ing.minStock) {
+                    status = `<span class="status-badge status-low">Stok Rendah</span>`;
+                } else if (ing.expiry && daysUntilExpiry <= 7 && daysUntilExpiry > 0) {
+                    status = `<span class="status-badge status-expiring">Akan Kedaluwarsa</span>`;
+                } else if (ing.expiry && daysUntilExpiry <= 0) {
+                    status = `<span class="status-badge status-danger">Kedaluwarsa</span>`;
+                }
+                
+                const itemTotalValue = ing.stock * ing.price;
+                totalValue += itemTotalValue;
+
+                tableBody.innerHTML += `
+                    <tr>
+                        <td>${ing.name}</td>
+                        <td>${ing.category}</td>
+                        <td>${ing.stock}</td>
+                        <td>${ing.unit}</td>
+                        <td>Rp ${ing.price.toLocaleString('id-ID')}</td>
+                        <td>Rp ${itemTotalValue.toLocaleString('id-ID')}</td>
+                        <td>${ing.expiry || 'N/A'}</td>
+                        <td>${status}</td>
+                        <td>
+                            <button class="btn btn-sm btn-secondary" onclick="editIngredient(${ing.id})"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-danger" onclick="confirmDelete('ingredient', ${ing.id})"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            document.getElementById('totalInventoryValue').textContent = `Rp ${totalValue.toLocaleString('id-ID')}`;
+            document.getElementById('lowStockCount').textContent = ingredients.filter(i => i.stock <= i.minStock).length;
+            document.getElementById('expiringCount').textContent = ingredients.filter(i => i.expiry && new Date(i.expiry) <= new Date(new Date().setDate(new Date().getDate() + 7))).length;
+        };
+
+
+        // --- CRUD and other actions ---
+
+        const ingredientForm = document.getElementById('ingredientForm');
+        ingredientForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const id = document.getElementById('ingredientId').value;
+            const newIngredient = {
+                name: document.getElementById('ingredientName').value,
+                category: document.getElementById('ingredientCategory').value,
+                stock: parseFloat(document.getElementById('ingredientStock').value),
+                unit: document.getElementById('ingredientUnit').value,
+                price: parseFloat(document.getElementById('ingredientPrice').value),
+                minStock: parseFloat(document.getElementById('ingredientMinStock').value),
+                storage: document.getElementById('ingredientStorage').value,
+                expiry: document.getElementById('ingredientExpiry').value,
+            };
+
+            if (id) { 
+                const index = ingredients.findIndex(i => i.id == id);
+                ingredients[index] = { ...ingredients[index], ...newIngredient };
+                showToast('Bahan berhasil diperbarui!', 'success');
+                addActivity('fas fa-edit text-warning', `Memperbarui bahan ${newIngredient.name}`);
+            } else {
+                newIngredient.id = Date.now();
+                ingredients.push(newIngredient);
+                showToast('Bahan baru berhasil ditambahkan!', 'success');
+                 addActivity('fas fa-plus-circle text-success', `Menambahkan bahan ${newIngredient.name}`);
+            }
+
+            closeModal('ingredientModal');
+            initializeAppState();
+        });
+
+        window.openIngredientModal = () => {
+            document.getElementById('ingredientModalTitle').textContent = 'Tambah Bahan Baru';
+            ingredientForm.reset();
+            document.getElementById('ingredientId').value = '';
+            openModal('ingredientModal');
+        };
+
+        window.editIngredient = (id) => {
+            const ing = ingredients.find(i => i.id === id);
+            if (!ing) return;
+            
+            document.getElementById('ingredientModalTitle').textContent = 'Edit Bahan';
+            document.getElementById('ingredientId').value = ing.id;
+            document.getElementById('ingredientName').value = ing.name;
+            document.getElementById('ingredientCategory').value = ing.category;
+            document.getElementById('ingredientStock').value = ing.stock;
+            document.getElementById('ingredientUnit').value = ing.unit;
+            document.getElementById('ingredientPrice').value = ing.price;
+            document.getElementById('ingredientMinStock').value = ing.minStock;
+            document.getElementById('ingredientStorage').value = ing.storage;
+            document.getElementById('ingredientExpiry').value = ing.expiry;
+
+            openModal('ingredientModal');
+        };
+        
+        const recipeForm = document.getElementById('recipeForm');
+        recipeForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const id = document.getElementById('recipeId').value;
+            const recipeIngredients = [];
+            document.querySelectorAll('#recipeIngredients .ingredient-row').forEach(row => {
+                const ingId = row.querySelector('.ingredient-select').value;
+                const ingAmount = row.querySelector('input[name="ingredientAmount[]"]').value;
+                if (ingId && ingAmount) {
+                    recipeIngredients.push({ id: parseInt(ingId), amount: parseFloat(ingAmount) });
+                }
+            });
+
+            const newRecipe = {
+                name: document.getElementById('recipeName').value,
+                category: document.getElementById('recipeCategory').value,
+                servings: parseInt(document.getElementById('recipeServings').value),
+                cookTime: parseInt(document.getElementById('recipeCookTime').value),
+                difficulty: document.getElementById('recipeDifficulty').value,
+                price: parseFloat(document.getElementById('recipePrice').value),
+                image: `https://placehold.co/300x150/CCCCCC/FFFFFF?text=${document.getElementById('recipeName').value.replace(' ','+')}`,
+                ingredients: recipeIngredients,
+                instructions: document.getElementById('recipeInstructions').value,
+            };
+
+            if (id) {
+                const index = recipes.findIndex(r => r.id == id);
+                recipes[index] = { ...recipes[index], ...newRecipe };
+                showToast('Resep berhasil diperbarui!', 'success');
+                 addActivity('fas fa-edit text-warning', `Memperbarui resep ${newRecipe.name}`);
+            } else { 
+                newRecipe.id = Date.now();
+                recipes.push(newRecipe);
+                showToast('Resep baru berhasil ditambahkan!', 'success');
+                 addActivity('fas fa-plus-circle text-success', `Menambahkan resep ${newRecipe.name}`);
+            }
+
+            closeModal('recipeModal');
+            initializeAppState();
+        });
+
+        window.openRecipeModal = () => {
+            document.getElementById('recipeModalTitle').textContent = 'Tambah Resep Baru';
+            recipeForm.reset();
+            document.getElementById('recipeId').value = '';
+            populateIngredientSelects();
+            openModal('recipeModal');
+        };
+
+        window.editRecipe = (id) => {
+            const rec = recipes.find(r => r.id === id);
+            if (!rec) return;
+
+            document.getElementById('recipeModalTitle').textContent = 'Edit Resep';
+            document.getElementById('recipeId').value = rec.id;
+            document.getElementById('recipeName').value = rec.name;
+            document.getElementById('recipeCategory').value = rec.category;
+            document.getElementById('recipeServings').value = rec.servings;
+            document.getElementById('recipeCookTime').value = rec.cookTime;
+            document.getElementById('recipeDifficulty').value = rec.difficulty;
+            document.getElementById('recipePrice').value = rec.price;
+            document.getElementById('recipeInstructions').value = rec.instructions;
+
+            const container = document.getElementById('recipeIngredients');
+            container.innerHTML = ''; // Clear existing
+            rec.ingredients.forEach(ing => addIngredientRow(ing.id, ing.amount));
+
+            openModal('recipeModal');
+        };
+
+        const populateIngredientSelects = (selectElement) => {
+            const selects = selectElement ? [selectElement] : document.querySelectorAll('.ingredient-select');
+            selects.forEach(select => {
+                select.innerHTML = '<option value="">Pilih Bahan</option>';
+                ingredients.forEach(ing => {
+                    select.innerHTML += `<option value="${ing.id}">${ing.name} (${ing.unit})</option>`;
+                });
+            });
+        };
+
+        window.addIngredientRow = (selectedId = '', amount = '') => {
+            const container = document.getElementById('recipeIngredients');
+            const newRow = document.createElement('div');
+            newRow.className = 'ingredient-row';
+            newRow.innerHTML = `
+                <select class="ingredient-select" name="ingredientId[]" required></select>
+                <input type="number" name="ingredientAmount[]" placeholder="Jumlah" min="0" step="0.1" value="${amount}" required>
+                <button type="button" class="btn btn-sm btn-danger" onclick="removeIngredientRow(this)">
+                    <i class="fas fa-trash"></i>
+                </button>
+            `;
+            container.appendChild(newRow);
+            const newSelect = newRow.querySelector('.ingredient-select');
+            populateIngredientSelects(newSelect);
+            if (selectedId) {
+                newSelect.value = selectedId;
+            }
+        };
+
+        window.removeIngredientRow = (button) => {
+            button.closest('.ingredient-row').remove();
+        };
+
+        window.confirmDelete = (type, id) => {
+            const confirmModal = document.getElementById('confirmModal');
+            const confirmMessage = document.getElementById('confirmMessage');
+            const confirmBtn = document.getElementById('confirmBtn');
+
+            let itemName = '';
+            if (type === 'ingredient') {
+                itemName = ingredients.find(i => i.id === id)?.name;
+            } else if (type === 'recipe') {
+                itemName = recipes.find(r => r.id === id)?.name;
+            }
+
+            confirmMessage.textContent = `Apakah Anda yakin ingin menghapus "${itemName}"? Tindakan ini tidak dapat diurungkan.`;
+            confirmBtn.onclick = () => {
+                deleteItem(type, id, itemName);
+                closeModal('confirmModal');
+            };
+            openModal('confirmModal');
+        };
+
+        const deleteItem = (type, id, name) => {
+            if (type === 'ingredient') {
+                ingredients = ingredients.filter(i => i.id !== id);
+            } else if (type === 'recipe') {
+                recipes = recipes.filter(r => r.id !== id);
+            }
+            showToast('Item berhasil dihapus.', 'success');
+            addActivity('fas fa-trash text-danger', `Menghapus ${type} ${name}`);
+            initializeAppState();
+        };
+
+
+        // --- Toast Notification ---
+        const showToast = (message, type = 'info') => {
+            const toastContainer = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            toastContainer.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 100);
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3000);
+        };
+        
+        // --- NEWLY IMPLEMENTED FEATURES ---
+
+        // 1. Quality Control
+        window.startQualityCheck = () => {
+            const checklistContainer = document.getElementById('qualityChecklist');
+            const alertsContainer = document.getElementById('qualityAlerts');
+            const checks = [
+                "Suhu freezer sesuai standar (-18°C)",
+                "Suhu chiller sesuai standar (0-4°C)",
+                "Area persiapan makanan bersih dan higienis",
+                "Peralatan masak sudah dicuci bersih",
+                "Stok bahan mentah dan matang terpisah",
+                "Tidak ada bahan yang mendekati kedaluwarsa hari ini"
+            ];
+            checklistContainer.innerHTML = checks.map(check => `
+                <label style="display: block; margin-bottom: 10px;">
+                    <input type="checkbox" style="margin-right: 10px;"> ${check}
+                </label>
+            `).join('');
+
+            alertsContainer.innerHTML = `
+                <div class="reminder-item">
+                    <i class="fas fa-edit text-warning"></i>
+                    <span>Sanitasi peralatan perlu perhatian. Pastikan semua alat dicuci ulang.</span>
+                </div>
+            `;
+            showToast('Checklist kualitas harian dimuat.', 'info');
+        };
+
+        // 2. Waste Management
+        window.openWasteModal = () => {
+            openModal('wasteModal');
+        };
+
+        const wasteForm = document.getElementById('wasteForm');
+        wasteForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const newWaste = {
+                id: Date.now(),
+                type: document.getElementById('wasteType').value,
+                amount: parseFloat(document.getElementById('wasteAmount').value),
+                unit: document.getElementById('wasteUnit').value,
+                source: document.getElementById('wasteSource').value,
+                date: new Date()
+            };
+            wasteData.push(newWaste);
+            showToast('Data limbah berhasil dicatat', 'success');
+            addActivity('fas fa-recycle text-info', `Mencatat ${newWaste.amount} ${newWaste.unit} limbah ${newWaste.type}`);
+            closeModal('wasteModal');
+            updateWasteSummary();
+            renderWasteChart();
+        });
+
+        const updateWasteSummary = () => {
+             const organic = wasteData.filter(w => w.type === 'organik').reduce((sum, w) => sum + w.amount, 0);
+             const oil = wasteData.filter(w => w.type === 'minyak').reduce((sum, w) => sum + w.amount, 0);
+             const packaging = wasteData.filter(w => w.type === 'kemasan').reduce((sum, w) => sum + w.amount, 0);
+             document.getElementById('organicWaste').textContent = `${organic.toFixed(1)} kg`;
+             document.getElementById('usedOil').textContent = `${oil.toFixed(1)} liter`;
+             document.getElementById('packagingWaste').textContent = `${packaging.toFixed(1)} kg`;
+        };
+        
+        // 3. Processing
+        window.openProcessingModal = () => {
+            const select = document.getElementById('processRecipe');
+            select.innerHTML = '<option value="">Pilih Resep</option>';
+            recipes.forEach(r => {
+                select.innerHTML += `<option value="${r.id}">${r.name}</option>`;
+            });
+            openModal('processingModal');
+        };
+        
+        window.startProcessingFromRecipe = (recipeId) => {
+            openProcessingModal();
+            document.getElementById('processRecipe').value = recipeId;
+        };
+
+        const processingForm = document.getElementById('processingForm');
+        processingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const recipeId = document.getElementById('processRecipe').value;
+            const quantity = parseInt(document.getElementById('processQuantity').value);
+            const recipe = recipes.find(r => r.id == recipeId);
+            
+            let canCook = true;
+            let missing = [];
+            recipe.ingredients.forEach(req => {
+                const stockItem = ingredients.find(i => i.id === req.id);
+                if (!stockItem || stockItem.stock < req.amount * quantity) {
+                    canCook = false;
+                    missing.push(stockItem ? stockItem.name : 'Bahan tidak ditemukan');
+                }
+            });
+
+            if(canCook) {
+                recipe.ingredients.forEach(req => {
+                    const stockItem = ingredients.find(i => i.id === req.id);
+                    stockItem.stock -= req.amount * quantity;
+                });
+                
+                const newProduction = {
+                    id: Date.now(),
+                    recipeName: recipe.name,
+                    quantity: quantity,
+                    chef: document.getElementById('processChef').value,
+                    status: 'Selesai',
+                    date: new Date()
+                };
+                processingQueue.push(newProduction);
+                productionHistory.push(newProduction);
+
+                showToast(`${recipe.name} ditambahkan ke antrian!`, 'success');
+                addActivity('fas fa-fire-burner text-info', `Memulai pengolahan ${quantity} porsi ${recipe.name}`);
+                closeModal('processingModal');
+                initializeAppState();
+                renderProcessingQueue();
+            } else {
+                showToast(`Stok tidak cukup untuk: ${missing.join(', ')}`, 'error');
+            }
+        });
+
+        const renderProcessingQueue = () => {
+            const list = document.getElementById('queueList');
+            list.innerHTML = '';
+            if (processingQueue.length === 0) {
+                list.innerHTML = '<p>Tidak ada item dalam antrian.</p>';
+                return;
+            }
+            processingQueue.forEach(item => {
+                list.innerHTML += `
+                    <div class="activity-item" style="cursor: pointer;" onclick="showProcessingSteps(${item.id})">
+                        <i class="fas fa-utensils text-info"></i>
+                        <span>${item.quantity}x ${item.recipeName} - (${item.status})</span>
+                    </div>`;
+            });
+        };
+
+        window.showProcessingSteps = (queueId) => {
+            const queueItem = processingQueue.find(q => q.id === queueId);
+            const recipe = recipes.find(r => r.name === queueItem.recipeName);
+            const stepsContainer = document.getElementById('stepsContainer');
+            if (recipe) {
+                const steps = recipe.instructions.split('\n').map((step) => `
+                    <label style="display: block; margin-bottom: 10px;">
+                        <input type="checkbox" style="margin-right: 10px;"> ${step}
+                    </label>
+                `).join('');
+                stepsContainer.innerHTML = `<h4>Langkah untuk ${recipe.name}</h4>${steps}`;
+            }
+        };
+
+        // 4. Reports and Export
+        window.exportInventory = () => {
+            let csvContent = "data:text/csv;charset=utf-8,";
+            const headers = ["ID", "Nama Bahan", "Kategori", "Stok", "Satuan", "Harga Satuan", "Stok Minimum", "Penyimpanan", "Tanggal Kedaluwarsa"];
+            csvContent += headers.join(",") + "\r\n";
+
+            ingredients.forEach(ing => {
+                const row = [ing.id, `"${ing.name}"`, ing.category, ing.stock, ing.unit, ing.price, ing.minStock, ing.storage, ing.expiry || 'N/A'];
+                csvContent += row.join(",") + "\r\n";
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "laporan_inventori.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast('Inventori berhasil diekspor!', 'success');
+        };
+
+        window.generateReport = () => {
+            const period = document.getElementById('reportPeriod').value;
+            const now = new Date();
+            let startDate;
+
+            if (period === 'daily') {
+                startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            } else if (period === 'weekly') {
+                startDate = new Date(now.setDate(now.getDate() - 7));
+            } else if (period === 'monthly') {
+                startDate = new Date(now.setMonth(now.getMonth() - 1));
+            }
+
+            const filteredProduction = productionHistory.filter(p => p.date >= startDate);
+            const filteredWaste = wasteData.filter(w => w.date >= startDate);
+
+            generateInventoryReport(); // Always shows current inventory
+            generateProductionReport(filteredProduction);
+            generateWasteReport(filteredWaste);
+            showToast('Laporan berhasil dibuat!', 'success');
+        };
+
+        const generateInventoryReport = () => {
+            const body = document.getElementById('inventory-report');
+            let table = `<table class="report-table">
+                <thead><tr><th>Bahan</th><th>Kategori</th><th>Stok Saat Ini</th><th>Nilai Stok</th></tr></thead><tbody>`;
+            if (ingredients.length === 0) {
+                body.innerHTML = '<p>Tidak ada data inventaris.</p>';
+                return;
+            }
+            ingredients.forEach(ing => {
+                table += `<tr>
+                    <td>${ing.name}</td>
+                    <td>${ing.category}</td>
+                    <td>${ing.stock} ${ing.unit}</td>
+                    <td>Rp ${(ing.stock * ing.price).toLocaleString('id-ID')}</td>
+                </tr>`;
+            });
+            table += '</tbody></table>';
+            body.innerHTML = table;
+        };
+
+        const generateProductionReport = (data) => {
+            const body = document.getElementById('production-report');
+            if (data.length === 0) {
+                body.innerHTML = '<p>Tidak ada data produksi untuk periode ini.</p>';
+                return;
+            }
+            let table = `<table class="report-table">
+                <thead><tr><th>Tanggal</th><th>Resep</th><th>Porsi</th><th>Chef</th></tr></thead><tbody>`;
+            data.forEach(item => {
+                table += `<tr>
+                    <td>${item.date.toLocaleDateString('id-ID')}</td>
+                    <td>${item.recipeName}</td>
+                    <td>${item.quantity}</td>
+                    <td>${item.chef}</td>
+                </tr>`;
+            });
+            table += '</tbody></table>';
+            body.innerHTML = table;
+        };
+
+        const generateWasteReport = (data) => {
+            const body = document.getElementById('waste-report');
+            if (data.length === 0) {
+                body.innerHTML = '<p>Tidak ada data limbah untuk periode ini.</p>';
+                return;
+            }
+            let table = `<table class="report-table">
+                <thead><tr><th>Tanggal</th><th>Jenis</th><th>Jumlah</th><th>Sumber</th></tr></thead><tbody>`;
+            data.forEach(item => {
+                table += `<tr>
+                    <td>${item.date.toLocaleDateString('id-ID')}</td>
+                    <td>${item.type}</td>
+                    <td>${item.amount} ${item.unit}</td>
+                    <td>${item.source}</td>
+                </tr>`;
+            });
+            table += '</tbody></table>';
+            body.innerHTML = table;
+        };
+        
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const tabId = e.target.dataset.tab;
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+
+                document.querySelectorAll('.report-tab-content').forEach(content => content.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // --- Chart Rendering ---
+        const renderWasteChart = () => {
+            if (!document.getElementById('wasteChart')) return;
+            const ctx = document.getElementById('wasteChart').getContext('2d');
+            const organic = wasteData.filter(w => w.type === 'organik').reduce((sum, w) => sum + w.amount, 0);
+            const oil = wasteData.filter(w => w.type === 'minyak').reduce((sum, w) => sum + w.amount, 0);
+            const packaging = wasteData.filter(w => w.type === 'kemasan').reduce((sum, w) => sum + w.amount, 0);
+
+            if(wasteChartInstance) wasteChartInstance.destroy();
+            wasteChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Organik (kg)', 'Minyak (L)', 'Kemasan (kg)'],
+                    datasets: [{
+                        label: 'Jumlah Limbah',
+                        data: [organic, oil, packaging],
+                        backgroundColor: ['#50E3C2', '#F5A623', '#4A90E2'],
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+            });
+        };
+        
+        // --- Initializer ---
+        const initializeAppState = () => {
+            updateDashboard();
+            renderIngredients();
+            renderRecipes();
+            renderInventory();
+            renderProcessingQueue();
+            updateWasteSummary();
+            renderActivities();
+        };
+
+        initializeAppState();
+        switchSection('dashboard');
+    });
     </script>
 </body>
 </html>
+
